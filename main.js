@@ -1,11 +1,17 @@
-const res = document.querySelector(".res");
+var res = document.getElementById("res");
+var urlInput = document.getElementById("linkInput");
+var generateButton = document.getElementById("generateButton");
 
-function byteEncode(stringToEncode) {
-  const textEncoder = new TextEncoder();
+
+generateButton.onclick = function() {
+  var link = urlInput.value;
   
-  textEncoder.encode(stringToEncode);
+  let encoder = new TextEncoder();
+  link = encoder.encode(link);
+  res.textContent = newLink;
+  
 }
 
-var newRes = byteEncode("Hello");
-
-res.textContent = newRes;
+function convertToBytes() {
+  
+}
