@@ -1,5 +1,15 @@
-/* Got h1 styling from html-css-js.com : ) */
+body {
+  background-color: #090726;
+}
+
+/* Some styling was inspired by html-css-js.com */
+
 h1 {
 font-family: Impact, sans-serif;
-color: #CE5937;
+color: #03dbfc;
+}
+
+h2 {
+  font-family: Sans-Serif;
+  color: white;
 }
