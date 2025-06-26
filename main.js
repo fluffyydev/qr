@@ -6,6 +6,15 @@ var generateButton = document.getElementById("generateButton");
 generateButton.onclick = function() {
   var binaryString = convertToBinary(urlInput.value);
   res.textContent = binaryString;
+  
+  const canvas = document.getElementById('theCanvas');
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  // Way to change fill color --  ctx.fillStyle = rbgColor;
+  
+  ctx.fillStyle = "rgb(158, 158, 158)";
+  ctx.fillRect(0, 0, 500, 500);
 }
   
 
