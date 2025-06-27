@@ -10,6 +10,7 @@ var quietZoneSize = 10; // How many pixels the border goes out from QR code
 var qrArray = [];
 
 generateButton.onclick = function() {
+  var linklength = urlInput.value.length
   var binaryString = convertToBinary(urlInput.value);
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -38,6 +39,8 @@ generateButton.onclick = function() {
   makePosSq(0, 0);
   makePosSq(14, 0);
   makePosSq(0, 14);
+  
+  alignPat(12, 12);
   
   makeQR(qrArray);
 }
@@ -76,6 +79,22 @@ function makePosSq(startX, startY) {
   qrArray[startX + 6][startY + 1] = 1;
   qrArray[startX + 6][startY + 5] = 1;
   qrArray[startX][startY + 5] = 1;
+}
+
+function alignPat(startX, startY) {
+  for (let time = 0; time <= 4; time += 4) {
+    for (let square = startX; square <= startX + 4; square++) {
+      qrArray[square][startY + time] = 1;
+    }
+  }
+  
+  for (let time = 1; time <= 3; time++) {
+    for (let square = startX; square <= startX + 4; square += 4) {
+      qrArray[square][startY + time] = 1;
+    }
+  }
+  
+  qrArray[startX + 2][startY + 2] = 1;
 }
 
 function fillSquare(x, y) {
