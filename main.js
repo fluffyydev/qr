@@ -7,6 +7,8 @@ var ctx = canvas.getContext("2d");
 var quietZoneColor = "rgb(158, 158, 158)";
 var quietZoneSize = 10; // How many pixels the border goes out from QR code
 
+var qrArray = [];
+
 generateButton.onclick = function() {
   var binaryString = convertToBinary(urlInput.value);
 
@@ -23,7 +25,7 @@ generateButton.onclick = function() {
   
   ctx.fillStyle = "rgb(0, 0, 0)";
   
-  var qrArray = [];
+  qrArray = [];
   
   for (let b = 20; b >= 0; b--) {
     qrArray.push([]);
@@ -32,40 +34,11 @@ generateButton.onclick = function() {
     }
   }
   
-  // Positioning Squares
   
-  for (let time = 0; time <= 6; time += 6) {
-    for (let square = 0; square <= 20; square++) {
-      if (square <= 6 || square >= 14) {
-        qrArray[square][time] = 1;
-      }
-    }
-  }
+  makePosSq(0, 0);
+  makePosSq(14, 0);
+  makePosSq(0, 14);
   
-  qrArray[0][1] = 1;
-  qrArray[6][1] = 1;
-  qrArray[20][1] = 1;
-  qrArray[14][1] = 1;
-  
-  for (let row = 2; row <= 4; row++) {
-    for (let square = 0; square <= 20; square++) {
-      if (square <= 6 || square >= 14) {
-        if (square != 1 && square != 5 && square != 15 && square != 19) {
-          qrArray[square][row] = 1;
-        }
-      }
-    }
-  }
-  
-  
-  
-  qrArray[0][5] = 1;
-  qrArray[6][5] = 1;
-  qrArray[14][5] = 1;
-  qrArray[20][5] = 1;
-
-  
-
   makeQR(qrArray);
 }
 
@@ -82,10 +55,34 @@ function makeQR(qrList) {
   
 }
   
+
+function makePosSq(startX, startY) {
+  for (let time = 0; time <= 6; time += 6) {
+    for (let square = startX; square <= startX + 6; square++) {
+      qrArray[square][startY + time] = 1;
+    }
+  }
+
+  for (let row = startY + 2; row <= startY + 4; row++) {
+    for (let square = startX; square <= startX + 6; square++) {
+      if (square <= startX + 6 || square >= startX - 1) {
+        if (square != startX + 1 && square != startX + 5) {
+          qrArray[square][row] = 1;
+        }
+      }
+    }
+  }
+  qrArray[startX][startY + 1] = 1;
+  qrArray[startX + 6][startY + 1] = 1;
+  qrArray[startX + 6][startY + 5] = 1;
+  qrArray[startX][startY + 5] = 1;
+}
+
 function fillSquare(x, y) {
   ctx.fillStyle = "rgb(0, 0, 0)";
   ctx.fillRect(quietZoneSize + 10 * x, quietZoneSize + 10 * y, 10, 10);
 }
+
 
 function convertToBinary(stringToConvert) {
   let encoder = new TextEncoder();
