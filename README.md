@@ -5,14 +5,17 @@
 
 ## To-do:
 
-- Add Positioning Squares 
-- Add Alignment Pattern
 - Add Timing Strips
-- Add format strips
+- Add Format Strips
+- Add Data Formatting
+- Add Data Bits
+- Add Data Correction Bits
+- Add Data Masking
 
 ## Done:
 
 - Canvas
 - Quiet Zone
-- 2/3 Positioning Squares
+- Positioning Squares
+- Alignment Pattern
 
