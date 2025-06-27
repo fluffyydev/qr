@@ -28,45 +28,43 @@ generateButton.onclick = function() {
   for (let b = 20; b >= 0; b--) {
     qrArray.push([]);
     for (let y = 20; y >= 0; y--) {
-      qrArray[20- b].push(0);
+      qrArray[20 - b].push("");
     }
   }
   
   // Positioning Squares
   
-  qrArray[0][0] = 1;
-  qrArray[1][0] = 1;
-  qrArray[2][0] = 1;
-  qrArray[3][0] = 1;
-  qrArray[4][0] = 1;
-  qrArray[5][0] = 1;
-  qrArray[6][0] = 1;
+  for (let time = 0; time <= 6; time += 6) {
+    for (let square = 0; square <= 20; square++) {
+      if (square <= 6 || square >= 14) {
+        qrArray[square][time] = 1;
+      }
+    }
+  }
+  
   qrArray[0][1] = 1;
   qrArray[6][1] = 1;
-  qrArray[0][2] = 1;
-  qrArray[2][2] = 1;
-  qrArray[3][2] = 1;
-  qrArray[4][2] = 1;
-  qrArray[6][2] = 1;
-  qrArray[0][3] = 1;
-  qrArray[2][3] = 1;
-  qrArray[3][3] = 1;
-  qrArray[4][3] = 1;
-  qrArray[6][3] = 1;
-  qrArray[0][4] = 1;
-  qrArray[2][4] = 1;
-  qrArray[3][4] = 1;
-  qrArray[4][4] = 1;
-  qrArray[6][4] = 1;
+  qrArray[20][1] = 1;
+  qrArray[14][1] = 1;
+  
+  for (let row = 2; row <= 4; row++) {
+    for (let square = 0; square <= 20; square++) {
+      if (square <= 6 || square >= 14) {
+        if (square != 1 && square != 5 && square != 15 && square != 19) {
+          qrArray[square][row] = 1;
+        }
+      }
+    }
+  }
+  
+  
+  
   qrArray[0][5] = 1;
   qrArray[6][5] = 1;
-  qrArray[0][6] = 1;
-  qrArray[1][6] = 1;
-  qrArray[2][6] = 1;
-  qrArray[3][6] = 1;
-  qrArray[4][6] = 1;
-  qrArray[5][6] = 1;
-  qrArray[6][6] = 1;
+  qrArray[14][5] = 1;
+  qrArray[20][5] = 1;
+
+  
 
   makeQR(qrArray);
 }
