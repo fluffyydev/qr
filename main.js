@@ -50,7 +50,7 @@ function makeQR(qrList) {
   
   for (let t = 0; t <= size - 1; t++) {
     for (let v = 0; v <= size - 1; v++) {
-      if (qrList[t][v] == 1) {
+      if (qrList[t][v] == 1 || qrList[t][v] == 3) {
         fillSquare(t, v);
       }
     }
@@ -62,7 +62,7 @@ function makeQR(qrList) {
 function makePosSq(startX, startY) {
   for (let time = 0; time <= 6; time += 6) {
     for (let square = startX; square <= startX + 6; square++) {
-      qrArray[square][startY + time] = 1;
+      qrArray[square][startY + time] = 3;
     }
   }
 
@@ -70,31 +70,31 @@ function makePosSq(startX, startY) {
     for (let square = startX; square <= startX + 6; square++) {
       if (square <= startX + 6 || square >= startX - 1) {
         if (square != startX + 1 && square != startX + 5) {
-          qrArray[square][row] = 1;
+          qrArray[square][row] = 3;
         }
       }
     }
   }
-  qrArray[startX][startY + 1] = 1;
-  qrArray[startX + 6][startY + 1] = 1;
-  qrArray[startX + 6][startY + 5] = 1;
-  qrArray[startX][startY + 5] = 1;
+  qrArray[startX][startY + 1] = 3;
+  qrArray[startX + 6][startY + 1] = 3;
+  qrArray[startX + 6][startY + 5] = 3;
+  qrArray[startX][startY + 5] = 3;
 }
 
 function alignPat(startX, startY) {
   for (let time = 0; time <= 4; time += 4) {
     for (let square = startX; square <= startX + 4; square++) {
-      qrArray[square][startY + time] = 1;
+      qrArray[square][startY + time] = 3;
     }
   }
   
   for (let time = 1; time <= 3; time++) {
     for (let square = startX; square <= startX + 4; square += 4) {
-      qrArray[square][startY + time] = 1;
+      qrArray[square][startY + time] = 3;
     }
   }
   
-  qrArray[startX + 2][startY + 2] = 1;
+  qrArray[startX + 2][startY + 2] = 3;
 }
 
 function fillSquare(x, y) {
